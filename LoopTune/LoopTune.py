@@ -2,12 +2,19 @@ import datetime
 import time
 from playsound import playsound
 from tkinter import *
+import tkinter as tk
 
 def reproduzir(mensagem):
     playsound(mensagem,False)
 
 win = Tk()
 win.title("LoopTune")
+win.geometry("230x150")
+win.resizable(width=False, height=False)
+
+bg= PhotoImage(file = "lasalle.png")
+label1 = Label( win, image = bg)
+label1.place(x = 0, y = 0)
 
 hourtxt = Label(win, text="Insira a(s) hora(s) que deseja reproduzir")
 hourtxt.grid(column=0, row=0)
