@@ -29,19 +29,20 @@ m.place(x = 45, y = 140, width=20)
 eta =Label(win, text="")
 eta.place(x = 15, y = 70, width=142)
 
-t = 0
 def loop():
-    global t
     agora = datetime.datetime.now().time()
+    agora_em_segundos =int((agora.hour*60*60)+(agora.minute*60) + agora.second)
     hi = int(h.get())
     mi = int(m.get())
+    hora_em_segundos = ((hi*60*60) + (mi*60))
     hora = datetime.time(hi, mi)
     if agora >= hora:
-        reproduzir('./AUDIO.mp3')
+        eta["text"] = f"Faltam {hora_em_segundos - agora_em_segundos} segundos"
+        if hora_em_segundos - agora_em_segundos ==0:
+            reproduzir('./AUDIO.mp3')
     else:
-        eta["text"] = f"Se passaram {t} segundos"
+        eta["text"] = f"Faltam {hora_em_segundos - agora_em_segundos} segundos"
         win.after(1000,loop)
-        t+=1
             
 
 botao = Button(win, text="Iniciar",command=loop) #,command=loop 
